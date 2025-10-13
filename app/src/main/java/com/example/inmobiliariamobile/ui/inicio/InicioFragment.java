@@ -1,5 +1,6 @@
 package com.example.inmobiliariamobile.ui.inicio;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -13,26 +14,36 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.inmobiliariamobile.R;
+import com.example.inmobiliariamobile.databinding.FragmentInicioBinding;
+import com.google.android.gms.maps.SupportMapFragment;
 
 public class InicioFragment extends Fragment {
 
-    private InicioViewModel mViewModel;
+    private FragmentInicioBinding binding;
+    private InicioViewModel mv;
 
-    public static InicioFragment newInstance() {
-        return new InicioFragment();
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        mv = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(InicioViewModel.class);
+        binding = FragmentInicioBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        mv.getMMapa().observe(getViewLifecycleOwner(), new Observer<InicioViewModel.MapaActual>() {
+            @Override
+            public void onChanged(InicioViewModel.MapaActual mapaActual) {
+                SupportMapFragment mapFragment =
+                        (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+                mapFragment.getMapAsync(mapaActual);
+            }
+        });
+
+        mv.obtenerUbicacion();
+        return root;
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_inicio, container, false);
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(InicioViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }
