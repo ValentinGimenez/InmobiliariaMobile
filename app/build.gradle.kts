@@ -48,6 +48,8 @@ dependencies {
     implementation(libs.legacy.support.v4)
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

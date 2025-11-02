@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tipos_inmueble">
+        <item>Casa</item>
+        <item>Departamento</item>
+        <item>Duplex</item>
+        <item>PH</item>
+        <item>Local</item>
+    </string-array>
+
+    <string-array name="usos_inmueble">
+        <item>Residencial</item>
+        <item>Comercial</item>
+        <item>Industrial</item>
+        <item>Oficina</item>
+    </string-array>
+</resources>
