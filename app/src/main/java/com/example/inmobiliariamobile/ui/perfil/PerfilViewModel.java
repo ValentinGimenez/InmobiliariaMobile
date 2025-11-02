@@ -105,7 +105,7 @@ public class PerfilViewModel extends AndroidViewModel {
                 actual.getIdPropietario(),
                 email,
                 dni,
-                actual.getClave()
+                null
         );
 
         String token = ApiClient.leerToken(getApplication());
