@@ -1,4 +1,4 @@
-package com.example.inmobiliariamobile.ui.inquilinos;
+package com.example.inmobiliariamobile.ui.inmuebles;
 
 import android.app.Activity;
 import android.content.Context;
@@ -47,10 +47,19 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
         if (listado == null || listado.isEmpty()) return;
 
         Inmueble inmuebleActual = listado.get(position);
-        String urlBase = "https://inmobiliariaulp-amb5hwfqaraweyga.canadacentral-01.azurewebsites.net/";
+        String urlBase = "http://10.0.2.2:5145/";
 
         holder.direccion.setText(inmuebleActual.getDireccion());
-        holder.valor.setText("$ " + new DecimalFormat("#,##0.00").format(inmuebleActual.getValor()));
+        holder.valor.setText("$ " + new DecimalFormat("#,##0.00").format(inmuebleActual.getPrecio()));
+
+
+        String estado = inmuebleActual.getEstado();
+        String tipo = inmuebleActual.getTipo();
+        String uso = inmuebleActual.getUso();
+
+        holder.estado.setText("Estado: " + estado);
+        holder.tipo.setText("Tipo: " + tipo);
+        holder.uso.setText("Uso: " + uso);
 
         String imagePath = inmuebleActual.getImagen() == null ? "" : inmuebleActual.getImagen().replace("\\", "/");
         String fullUrl = imagePath.startsWith("http") ? imagePath : urlBase + imagePath;
@@ -76,7 +85,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
     }
 
     public static class InmuebleViewHolder extends RecyclerView.ViewHolder {
-        TextView direccion, valor;
+        TextView direccion, valor, estado, tipo, uso;
         ImageView foto;
         CardView cardView;
 
@@ -84,6 +93,9 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
             super(itemView);
             direccion = itemView.findViewById(R.id.tvDireccion);
             valor = itemView.findViewById(R.id.tvPrecio);
+            estado = itemView.findViewById(R.id.tvEstado);
+            tipo = itemView.findViewById(R.id.tvTipo);
+            uso = itemView.findViewById(R.id.tvUso);
             foto = itemView.findViewById(R.id.ivFoto);
             cardView = itemView.findViewById(R.id.cItem);
         }

@@ -3,46 +3,44 @@ package com.example.inmobiliariamobile.models;
 import java.io.Serializable;
 
 public class Inmueble implements Serializable {
-    private int idInmueble;
+    private int id;
     private String direccion;
-    private String tipo;
     private String uso;
+    private String tipo;
     private int ambientes;
     private int superficie;
-    private double latitud;
-    private double longitud;
-    private double valor;
+    private double eje_x;
+    private double eje_y;
+    private double precio;
     private String imagen;
-    private boolean disponible;
+    private String estado;
     private int idPropietario;
-    private Propietario duenio;
 
-    public Inmueble(){
-
+    public Inmueble() {
     }
 
-    public Inmueble(int idInmueble, String direccion, String tipo, String uso, int ambientes, int superficie, double latitud, double longitud, double valor, String imagen, boolean disponible, int idPropietario, Propietario duenio) {
-        this.idInmueble = idInmueble;
+    public Inmueble(int id, String direccion, String uso, String tipo, int ambientes, int superficie, double eje_x, double eje_y, double precio, String imagen, String estado, int idPropietario) {
+        this.id = id;
         this.direccion = direccion;
-        this.tipo = tipo;
         this.uso = uso;
+        this.tipo = tipo;
         this.ambientes = ambientes;
         this.superficie = superficie;
-        this.latitud = latitud;
-        this.longitud = longitud;
-        this.valor = valor;
+        this.eje_x = eje_x;
+        this.eje_y = eje_y;
+        this.precio = precio;
         this.imagen = imagen;
-        this.disponible = disponible;
+        this.estado = estado;
         this.idPropietario = idPropietario;
-        this.duenio = duenio;
     }
 
-    public int getIdInmueble() {
-        return idInmueble;
+
+    public int getId() {
+        return id;
     }
 
-    public void setIdInmueble(int idInmueble) {
-        this.idInmueble = idInmueble;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDireccion() {
@@ -53,20 +51,20 @@ public class Inmueble implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public String getUso() {
         return uso;
     }
 
     public void setUso(String uso) {
         this.uso = uso;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public int getAmbientes() {
@@ -85,28 +83,28 @@ public class Inmueble implements Serializable {
         this.superficie = superficie;
     }
 
-    public double getLatitud() {
-        return latitud;
+    public double getEje_x() {
+        return eje_x;
     }
 
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
+    public void setEje_x(double eje_x) {
+        this.eje_x = eje_x;
     }
 
-    public double getLongitud() {
-        return longitud;
+    public double getEje_y() {
+        return eje_y;
     }
 
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
+    public void setEje_y(double eje_y) {
+        this.eje_y = eje_y;
     }
 
-    public double getValor() {
-        return valor;
+    public double getPrecio() {
+        return precio;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
     public String getImagen() {
@@ -117,12 +115,12 @@ public class Inmueble implements Serializable {
         this.imagen = imagen;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public int getIdPropietario() {
@@ -131,13 +129,5 @@ public class Inmueble implements Serializable {
 
     public void setIdPropietario(int idPropietario) {
         this.idPropietario = idPropietario;
-    }
-
-    public Propietario getDuenio() {
-        return duenio;
-    }
-
-    public void setDuenio(Propietario duenio) {
-        this.duenio = duenio;
     }
 }

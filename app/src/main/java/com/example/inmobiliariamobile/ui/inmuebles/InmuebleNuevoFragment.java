@@ -105,8 +105,6 @@ public class InmuebleNuevoFragment extends Fragment {
                         binding.etValor.getText().toString(),
                         binding.cbDisp.isChecked()
                 );
-
-
             }
         });
 

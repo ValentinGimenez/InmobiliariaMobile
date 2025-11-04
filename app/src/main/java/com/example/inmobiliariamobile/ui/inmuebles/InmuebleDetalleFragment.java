@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -51,16 +49,16 @@ public class InmuebleDetalleFragment extends Fragment {
 
         mv.getMInmueble().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
             @Override public void onChanged(Inmueble i) {
-                binding.tvIdInmueble.setText(String.valueOf(i.getIdInmueble()));
+                binding.tvIdInmueble.setText(String.valueOf(i.getId()));
                 binding.tvDireccionI.setText(i.getDireccion());
                 binding.tvUsoI.setText(i.getUso());
                 binding.tvTipoI.setText(i.getTipo());
                 binding.tvAmbientesI.setText(String.valueOf(i.getAmbientes()));
                 binding.tvSuperficieI.setText(String.valueOf(i.getSuperficie()));
-                binding.tvLatitudI.setText(String.valueOf(i.getLatitud()));
-                binding.tvLongitudI.setText(String.valueOf(i.getLongitud()));
-                binding.tvValorI.setText(String.format("$ %.2f", i.getValor()));
-                String urlBase = "https://inmobiliariaulp-amb5hwfqaraweyga.canadacentral-01.azurewebsites.net/";
+                binding.tvLatitudI.setText(String.valueOf(i.getEje_x()));
+                binding.tvLongitudI.setText(String.valueOf(i.getEje_y()));
+                binding.tvValorI.setText(String.format("$ %.2f", i.getPrecio()));
+                String urlBase = "http://10.0.2.2:5145/";
                 String fullUrl = urlBase + (i.getImagen() == null ? "" : i.getImagen().replace("\\", "/"));
                 Glide.with(requireContext())
                         .load(fullUrl)
@@ -68,7 +66,7 @@ public class InmuebleDetalleFragment extends Fragment {
                         .placeholder(R.drawable.ic_launcher_foreground)
                         .into(binding.imgInmueble);
 
-                binding.checkDisponible.setChecked(i.isDisponible());
+                binding.checkDisponible.setChecked(i.getEstado().equalsIgnoreCase("Disponible"));
             }
         });
 

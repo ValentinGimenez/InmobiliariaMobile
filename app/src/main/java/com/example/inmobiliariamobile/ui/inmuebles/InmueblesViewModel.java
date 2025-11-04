@@ -47,11 +47,16 @@ public class InmueblesViewModel extends AndroidViewModel {
             public void onResponse(Call<List<Inmueble>> call, Response<List<Inmueble>> response) {
 
                 if (response.isSuccessful() && response.body() != null) {
+                    for (Inmueble inmueble : response.body()) {
+                        inmueble.setEstado(inmueble.getEstado());
+                        inmueble.setTipo(inmueble.getTipo());
+                        inmueble.setUso(inmueble.getUso());
+                    }
                     mLista.postValue(response.body());
                     if (response.body().isEmpty()) {
                         mError.setValue("No hay inmuebles registrados.");
                     } else {
-                        //mExito.setValue("Inmuebles cargados correctamente.");
+                        // mExito.setValue("Inmuebles cargados correctamente.");
                     }
                 } else {
                     mError.setValue("Error al obtener los inmuebles.");

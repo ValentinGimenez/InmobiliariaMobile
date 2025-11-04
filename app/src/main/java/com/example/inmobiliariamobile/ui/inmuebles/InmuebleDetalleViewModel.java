@@ -46,8 +46,8 @@ public class InmuebleDetalleViewModel extends AndroidViewModel {
 
     public void actualizarDisponibilidad(Boolean disponible) {
         Inmueble inmueble = new Inmueble();
-        inmueble.setDisponible(disponible);
-        inmueble.setIdInmueble(this.mInmueble.getValue().getIdInmueble());
+        inmueble.setEstado(disponible ? "Disponible" : "Suspendido");
+        inmueble.setId(this.mInmueble.getValue().getId());
         String token = ApiClient.leerToken(getApplication());
         Call<Inmueble> llamada = ApiClient.getApiInmobiliaria().actualizarInmueble("Bearer " + token, inmueble);
         llamada.enqueue(new Callback<Inmueble>() {

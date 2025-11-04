@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Imagen del inmueble -->
         <ImageView
             android:id="@+id/ivFoto"
             android:layout_width="match_parent"
@@ -25,7 +24,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_menu_camera" />
 
-        <!-- Contenido textual -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,6 +47,30 @@
                 android:layout_marginBottom="8dp"
                 android:text="$ 0.00"
                 android:textColor="@color/purple_700"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvEstado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estado: Disponible"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvTipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo: Casa"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvUso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Uso: Residencial"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.example.inmobiliariamobile.R;
 import com.example.inmobiliariamobile.databinding.FragmentInmueblesBinding;
 import com.example.inmobiliariamobile.models.Inmueble;
-import com.example.inmobiliariamobile.ui.inquilinos.InmuebleAdapter;
+import com.example.inmobiliariamobile.ui.inmuebles.InmuebleAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;

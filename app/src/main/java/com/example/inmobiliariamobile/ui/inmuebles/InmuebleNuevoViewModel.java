@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
@@ -39,9 +40,9 @@ public class InmuebleNuevoViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public LiveData<Uri> getMUri(){ return mUri; }
-    public LiveData<String> getMError(){ return mError; }
-    public LiveData<String> getMExito(){ return mExito; }
+    public LiveData<Uri> getMUri() { return mUri; }
+    public LiveData<String> getMError() { return mError; }
+    public LiveData<String> getMExito() { return mExito; }
 
     public void recibirFoto(ActivityResult result) {
         if (result.getResultCode() == RESULT_OK) {
@@ -64,7 +65,7 @@ public class InmuebleNuevoViewModel extends AndroidViewModel {
                                String latitud,
                                String longitud,
                                String valor,
-                               boolean disponible){
+                               boolean disponible) {
 
         if (direccion.isEmpty() || tipo.isEmpty() || uso.isEmpty() ||
                 ambientes.isEmpty() || superficie.isEmpty() ||
@@ -78,7 +79,7 @@ public class InmuebleNuevoViewModel extends AndroidViewModel {
             return;
         }
 
-        int ambientesPars,superficiePars;
+        int ambientesPars, superficiePars;
         double precio, lat, lon;
         try {
             ambientesPars = Integer.parseInt(ambientes);
@@ -97,10 +98,12 @@ public class InmuebleNuevoViewModel extends AndroidViewModel {
         inmueble.setUso(uso);
         inmueble.setAmbientes(ambientesPars);
         inmueble.setSuperficie(superficiePars);
-        inmueble.setLatitud(lat);
-        inmueble.setLongitud(lon);
-        inmueble.setValor(precio);
-        inmueble.setDisponible(disponible);
+        inmueble.setEje_x(lat);
+        inmueble.setEje_y(lon);
+        inmueble.setPrecio(precio);
+        inmueble.setEstado(disponible ? "Disponible" : "Suspendido");
+
+        Log.d("InmuebleData", "Inmueble creado: " + new Gson().toJson(inmueble));
 
         byte[] imagen = transformarImagen();
         if (imagen.length == 0) {
@@ -113,7 +116,11 @@ public class InmuebleNuevoViewModel extends AndroidViewModel {
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), imagen);
         MultipartBody.Part imagenPart = MultipartBody.Part.createFormData("imagen", "imagen.jpg", requestFile);
 
+        Log.d("InmuebleData", "Inmueble JSON: " + inmuebleJson);
+
         String token = ApiClient.leerToken(getApplication());
+        Log.d("InmuebleData", "Token: " + token);
+
         Call<Inmueble> call = ApiClient.getApiInmobiliaria()
                 .cargarInmueble("Bearer " + token, imagenPart, inmuebleBody);
 
@@ -122,17 +129,21 @@ public class InmuebleNuevoViewModel extends AndroidViewModel {
             public void onResponse(Call<Inmueble> call, Response<Inmueble> response) {
                 if (response.isSuccessful()) {
                     mExito.setValue("Inmueble cargado exitosamente.");
+                    Log.d("InmuebleData", "Inmueble cargado exitosamente.");
                 } else {
                     mError.setValue("Error al cargar inmueble. Código: " + response.code());
+                    Log.e("InmuebleData", "Error al cargar inmueble. Código: " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<Inmueble> call, Throwable t) {
                 mError.setValue("Error de conexión con el servidor.");
+                Log.e("InmuebleData", "Error de conexión con el servidor.", t);
             }
         });
     }
+
 
     private byte[] transformarImagen() {
         try {

@@ -27,7 +27,7 @@ import retrofit2.http.Part;
 
 public class ApiClient {
 
-    private static final String URLBASE= "https://inmobiliariaulp-amb5hwfqaraweyga.canadacentral-01.azurewebsites.net/";
+    private static final String URLBASE = "http://10.0.2.2:5145/";
 
     public static InmobiliariaService getApiInmobiliaria(){
 
