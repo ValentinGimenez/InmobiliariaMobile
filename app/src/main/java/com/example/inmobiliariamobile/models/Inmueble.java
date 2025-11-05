@@ -1,5 +1,7 @@
 package com.example.inmobiliariamobile.models;
 
+import android.util.Log;
+
 import java.io.Serializable;
 
 public class Inmueble implements Serializable {
@@ -52,6 +54,13 @@ public class Inmueble implements Serializable {
     }
 
     public String getUso() {
+        switch (uso) {
+            case "1":
+                return "Comercial";
+            case "2":
+                return "Residencial";
+        }
+        Log.d("InmuebleModel", "Estoy devolviendo fuera del switch uso: " + uso);
         return uso;
     }
 
@@ -60,7 +69,19 @@ public class Inmueble implements Serializable {
     }
 
     public String getTipo() {
+        switch (tipo) {
+            case "1":
+                return "Casa";
+            case "2":
+                return "Departamento";
+            case "3":
+                return "Oficina";
+            case "4":
+                return "Local";
+        }
+        Log.d("InmuebleModel", "Estoy devolviendo fuera del switch Tupo: " + tipo);
         return tipo;
+
     }
 
     public void setTipo(String tipo) {
@@ -116,7 +137,16 @@ public class Inmueble implements Serializable {
     }
 
     public String getEstado() {
+        Log.d("InmuebleModel", "Estado: " + estado);
+        switch (estado) {
+            case "1":
+                return "Disponible";
+            case "2":
+                return "No Disponible";
+        }
+        Log.d("InmuebleModel", "Estoy devolviendo fuera del switch Estado: " + estado);
         return estado;
+
     }
 
     public void setEstado(String estado) {

@@ -3,6 +3,7 @@ package com.example.inmobiliariamobile.ui.inmuebles;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,10 +57,36 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
         String estado = inmuebleActual.getEstado();
         String tipo = inmuebleActual.getTipo();
         String uso = inmuebleActual.getUso();
-
-        holder.estado.setText("Estado: " + estado);
-        holder.tipo.setText("Tipo: " + tipo);
-        holder.uso.setText("Uso: " + uso);
+        Log.d("InmuebleDetalle", "Estado: " + estado);
+        Log.d("InmuebleDetalle", "Tipo: " + tipo);
+        Log.d("InmuebleDetalle", "Uso: " + uso);
+        holder.estado.setText("Estado: "+ estado );
+        holder.tipo.setText("Tipo: " +tipo);
+        holder.uso.setText("Uso: " +uso);
+//        switch (estado) {
+//            case "1":
+//                holder.estado.setText("Estado: Disponible" );
+//                break;
+//            case "2":
+//                holder.estado.setText("Estado: No Disponible" );
+//                break;
+//        }
+//        switch (tipo) {
+//            case "1": holder.tipo.setText("Tipo: Casa" );
+//            break;
+//            case "2": holder.tipo.setText("Tipo: Departamento" );
+//            break;
+//            case "3": holder.tipo.setText("Tipo: Oficina" );
+//            break;
+//            case "4": holder.tipo.setText("Tipo: Local" );
+//            break;
+//        }
+//        switch (uso) {
+//            case "1": holder.uso.setText("Uso: Comercial" );
+//            break;
+//            case "2": holder.uso.setText("Uso: Residencial" );
+//            break;
+//        }
 
         String imagePath = inmuebleActual.getImagen() == null ? "" : inmuebleActual.getImagen().replace("\\", "/");
         String fullUrl = imagePath.startsWith("http") ? imagePath : urlBase + imagePath;
