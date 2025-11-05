@@ -102,8 +102,7 @@ public class InmuebleNuevoFragment extends Fragment {
                         binding.etSuperficie.getText().toString(),
                         binding.etLatitud.getText().toString(),
                         binding.etLongitud.getText().toString(),
-                        binding.etValor.getText().toString(),
-                        binding.cbDisp.isChecked()
+                        binding.etValor.getText().toString()
                 );
             }
         });

@@ -64,8 +64,7 @@ public class InmuebleNuevoViewModel extends AndroidViewModel {
                                String superficie,
                                String latitud,
                                String longitud,
-                               String valor,
-                               boolean disponible) {
+                               String valor) {
 
         if (direccion.isEmpty() || tipo.isEmpty() || uso.isEmpty() ||
                 ambientes.isEmpty() || superficie.isEmpty() ||
@@ -101,7 +100,7 @@ public class InmuebleNuevoViewModel extends AndroidViewModel {
         inmueble.setEje_x(lat);
         inmueble.setEje_y(lon);
         inmueble.setPrecio(precio);
-        inmueble.setEstado(disponible ? "Disponible" : "Suspendido");
+        inmueble.setEstado("2");
 
         Log.d("InmuebleData", "Inmueble creado: " + new Gson().toJson(inmueble));
 
