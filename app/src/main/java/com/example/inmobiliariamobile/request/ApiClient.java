@@ -89,7 +89,7 @@ public class ApiClient {
                 @Header("Authorization") String token,
                 @Part MultipartBody.Part imagen,
                 @Part("inmueble") RequestBody inmueble);
-        @GET("api/Contratos/vigentes/mios")
-        Call<List<Contrato>> obtenerContratosVigentesMios(@Header("Authorization") String token);
+        @GET("api/Contratos/")
+        Call<List<Contrato>> obtenerContratos(@Header("Authorization") String token);
     }
 }

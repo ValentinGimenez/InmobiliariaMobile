@@ -33,7 +33,7 @@ public class InquilinosViewModel extends AndroidViewModel {
 
     public void cargarContratosVigentes() {
         String token = ApiClient.leerToken(getApplication());
-        Call<List<Contrato>> call = ApiClient.getApiInmobiliaria().obtenerContratosVigentesMios("Bearer " + token);
+        Call<List<Contrato>> call = ApiClient.getApiInmobiliaria().obtenerContratos("Bearer " + token);
         call.enqueue(new Callback<List<Contrato>>() {
             @Override public void onResponse(Call<List<Contrato>> call, Response<List<Contrato>> response) {
                 if (response.isSuccessful() && response.body() != null) {
