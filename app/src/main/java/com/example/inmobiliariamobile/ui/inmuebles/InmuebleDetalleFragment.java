@@ -72,6 +72,12 @@ public class InmuebleDetalleFragment extends Fragment {
         binding.checkDisponible.setOnCheckedChangeListener((button, isChecked) -> {
             mv.actualizarDisponibilidad(isChecked);
         });
+        mv.getMEstado().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean habilitar) {
+                binding.checkDisponible.setEnabled(habilitar);
+            }
+        });
 
         mv.obtenerInmueble(getArguments());
 

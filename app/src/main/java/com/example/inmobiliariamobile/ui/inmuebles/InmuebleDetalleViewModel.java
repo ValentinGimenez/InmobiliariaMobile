@@ -20,6 +20,7 @@ public class InmuebleDetalleViewModel extends AndroidViewModel {
     private MutableLiveData<Inmueble> mInmueble = new MutableLiveData<>();
     private MutableLiveData<String> mError = new MutableLiveData<>();
     private MutableLiveData<String> mExito = new MutableLiveData<>();
+    private MutableLiveData<Boolean> mEstado = new MutableLiveData<>();
 
     public InmuebleDetalleViewModel(@NonNull Application application) {
         super(application);
@@ -37,10 +38,25 @@ public class InmuebleDetalleViewModel extends AndroidViewModel {
         return mExito;
     }
 
+    public LiveData<Boolean> getMEstado() {
+        return mEstado;
+    }
     public void obtenerInmueble(Bundle inmuebleBundle) {
         Inmueble inmueble = (Inmueble) inmuebleBundle.getSerializable("inmueble");
         if (inmueble != null) {
-            this.mInmueble.setValue(inmueble);
+            mInmueble.setValue(inmueble);
+
+            String estado = inmueble.getEstado() != null ? inmueble.getEstado().toLowerCase() : "";
+            boolean habilitar = true;
+            switch (estado) {
+                case "alquilado":
+                    habilitar = false;
+                    break;
+                default:
+                    habilitar = true;
+                    break;
+            }
+            mEstado.setValue(habilitar);
         }
     }
     public void actualizarDisponibilidad(Boolean disponible) {

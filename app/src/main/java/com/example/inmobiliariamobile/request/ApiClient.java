@@ -3,6 +3,7 @@ package com.example.inmobiliariamobile.request;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.inmobiliariamobile.models.Contrato;
 import com.example.inmobiliariamobile.models.Inmueble;
 import com.example.inmobiliariamobile.models.Propietario;
 import com.google.gson.Gson;
@@ -88,5 +89,7 @@ public class ApiClient {
                 @Header("Authorization") String token,
                 @Part MultipartBody.Part imagen,
                 @Part("inmueble") RequestBody inmueble);
+        @GET("api/Contratos/vigentes/mios")
+        Call<List<Contrato>> obtenerContratosVigentesMios(@Header("Authorization") String token);
     }
 }

@@ -60,7 +60,6 @@ public class Inmueble implements Serializable {
             case "2":
                 return "Residencial";
         }
-        Log.d("InmuebleModel", "Estoy devolviendo fuera del switch uso: " + uso);
         return uso;
     }
 
@@ -79,7 +78,6 @@ public class Inmueble implements Serializable {
             case "4":
                 return "Local";
         }
-        Log.d("InmuebleModel", "Estoy devolviendo fuera del switch Tupo: " + tipo);
         return tipo;
 
     }
@@ -143,8 +141,9 @@ public class Inmueble implements Serializable {
                 return "Disponible";
             case "2":
                 return "No Disponible";
+            case "3":
+                return "Alquilado";
         }
-        Log.d("InmuebleModel", "Estoy devolviendo fuera del switch Estado: " + estado);
         return estado;
 
     }

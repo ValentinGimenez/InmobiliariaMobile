@@ -2,39 +2,52 @@ package com.example.inmobiliariamobile.models;
 
 import java.io.Serializable;
 
-public class Propietario implements Serializable {
+public class Inquilino implements Serializable {
     private int id;
     private String nombre;
     private String apellido;
     private String dni;
     private String telefono;
     private String email;
-    private String clave;
+    private String imagen;
+    private int estado;
 
-    public Propietario(String apellido, String telefono, String nombre, int id, String email, String dni, String clave) {
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.nombre = nombre;
+
+    public Inquilino(int id, String nombre, String apellido, String dni, String telefono, String email, String imagen, int estado) {
         this.id = id;
-        this.email = email;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.dni = dni;
-        this.clave = clave;
+        this.telefono = telefono;
+        this.email = email;
+        this.imagen = imagen;
+        this.estado = estado;
     }
+
+    public Inquilino(){};
 
     public int getId() {
         return id;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getClave() {
-        return clave;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public String getEmail() {

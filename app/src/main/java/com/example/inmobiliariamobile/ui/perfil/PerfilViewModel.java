@@ -1,6 +1,7 @@
 package com.example.inmobiliariamobile.ui.perfil;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -42,6 +43,12 @@ public class PerfilViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Propietario> call, Response<Propietario> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    Propietario p = response.body();
+                    Log.d("API_DEBUG", "Propietario recibido: " +
+                            "ID=" + p.getId() +
+                            ", Nombre=" + p.getNombre() +
+                            ", Apellido=" + p.getApellido() +
+                            ", Email=" + p.getEmail());
                     mPropietario.postValue(response.body());
                 } else {
                     mError.setValue("Error al obtener los datos del perfil.");
@@ -102,7 +109,7 @@ public class PerfilViewModel extends AndroidViewModel {
                 apellido,
                 telefono,
                 nombre,
-                actual.getIdPropietario(),
+                actual.getId(),
                 email,
                 dni,
                 null
