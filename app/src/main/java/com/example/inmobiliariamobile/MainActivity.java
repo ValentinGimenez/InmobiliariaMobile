@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         solicitarPermisos();
+
         mv = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(MainActivityViewModel.class);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -39,22 +40,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mv.getMAgitar().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean != null && aBoolean) {
+                    mv.hacerLlamadaInmobiliaria();
+                }
+            }
+        });
+
         binding.btIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mv.login(binding.etUsuario.getText().toString(), binding.etPassword.getText().toString());
             }
         });
-
-
     }
-    public void solicitarPermisos(){
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M
-                && (checkSelfPermission(ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)  ||
-                (checkSelfPermission(ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED)){
-            requestPermissions(new String[]{ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION},1000);
+    public void solicitarPermisos() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && (checkSelfPermission(ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) ||
+                (checkSelfPermission(ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+            requestPermissions(new String[]{ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION}, 1000);
         }
-
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mv.reiniciarSensor();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mv.detenerSensor();
+    }
 }

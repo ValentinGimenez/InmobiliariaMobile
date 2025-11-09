@@ -62,11 +62,11 @@ public class PagosFragment extends Fragment {
                         .setTextColor(Color.WHITE)
                         .show()
         );
-        vm.getMPrecioInmueble().observe(getViewLifecycleOwner(), new Observer<Double>() {
+        vm.getMMontoMensual().observe(getViewLifecycleOwner(), new Observer<Double>() {
             @Override
-            public void onChanged(Double precioInmueble) {
+            public void onChanged(Double montoMensual) {
                 if (adapter != null) {
-                    adapter.setPrecioInmueble(precioInmueble);
+                    adapter.setPrecioInmueble(montoMensual);
                 }
             }
         });

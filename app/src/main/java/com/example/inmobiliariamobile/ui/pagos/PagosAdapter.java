@@ -3,6 +3,7 @@ package com.example.inmobiliariamobile.ui.pagos;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +58,9 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.PagoViewHold
         List<Pago> listado = liveData.getValue();
         if (listado == null || listado.isEmpty()) return;
         Pago pagoActual = listado.get(position);
+        String fechaPago = pagoActual.getFecha_pago();
 
+        Log.d("PagoFecha", "Fecha de pago recibida: " + fechaPago);
         if (listado == null) return;
 
         holder.idPago.setText("ID: "+ pagoActual.getId());

@@ -1,12 +1,20 @@
 package com.example.inmobiliariamobile;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.SystemClock;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 
 import com.example.inmobiliariamobile.request.ApiClient;
 
@@ -14,16 +22,29 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivityViewModel extends AndroidViewModel {
+public class MainActivityViewModel extends AndroidViewModel implements SensorEventListener {
 
     private final MutableLiveData<String> mError = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> mAgitar = new MutableLiveData<>();
+    private long lastShakeTime = 0;
+    private static final long SHAKE_THRESHOLD = 1000;
+    private static final float SHAKE_THRESHOLD_GRAVITY = 2.7F;
+    private SensorManager sensorManager;
+    private Sensor accelerometer;
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
+        sensorManager = (SensorManager) application.getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 
     public LiveData<String> getMError() {
         return mError;
+    }
+
+    public LiveData<Boolean> getMAgitar() {
+        return mAgitar;
     }
 
     public void login(String email, String clave) {
@@ -56,5 +77,41 @@ public class MainActivityViewModel extends AndroidViewModel {
                 mError.postValue("Error de conexión con el servidor.");
             }
         });
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            float x = event.values[0];
+            float y = event.values[1];
+            float z = event.values[2];
+
+            float gForce = (float) Math.sqrt(x * x + y * y + z * z) / SensorManager.GRAVITY_EARTH;
+
+            if (gForce > SHAKE_THRESHOLD_GRAVITY) {
+                long currentTime = System.currentTimeMillis();
+                if (currentTime - lastShakeTime > SHAKE_THRESHOLD) {
+                    lastShakeTime = currentTime;
+                    mAgitar.setValue(true);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+
+    public void hacerLlamadaInmobiliaria() {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:2664553747"));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getApplication().startActivity(intent);
+    }
+
+    public void detenerSensor() {
+        sensorManager.unregisterListener(this);
+    }
+    public void reiniciarSensor() {
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 }

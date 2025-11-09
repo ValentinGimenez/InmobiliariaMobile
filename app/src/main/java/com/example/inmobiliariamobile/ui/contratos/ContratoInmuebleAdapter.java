@@ -60,12 +60,8 @@ public class ContratoInmuebleAdapter extends RecyclerView.Adapter<ContratoInmueb
         holder.valor.setText("$ " + new DecimalFormat("#,##0.00").format(inmuebleActual.getPrecio()));
 
         String estado = inmuebleActual.getEstado();
-        String tipo = inmuebleActual.getTipo();
-        String uso = inmuebleActual.getUso();
 
         holder.estado.setText("Estado: " + (estado == null ? "" : estado));
-        holder.tipo.setText("Tipo: " + (tipo == null ? "" : tipo));
-        holder.uso.setText("Uso: " + (uso == null ? "" : uso));
 
         String imagePath = inmuebleActual.getImagen() == null ? "" : inmuebleActual.getImagen().replace("\\", "/");
         String fullUrl = imagePath.startsWith("http") ? imagePath : urlBase + imagePath;
@@ -101,8 +97,6 @@ public class ContratoInmuebleAdapter extends RecyclerView.Adapter<ContratoInmueb
             direccion = itemView.findViewById(R.id.tvDireccion);
             valor = itemView.findViewById(R.id.tvPrecio);
             estado = itemView.findViewById(R.id.tvEstado);
-            tipo = itemView.findViewById(R.id.tvTipo);
-            uso = itemView.findViewById(R.id.tvUso);
             foto = itemView.findViewById(R.id.ivFoto);
             cardView = itemView.findViewById(R.id.cItem);
         }

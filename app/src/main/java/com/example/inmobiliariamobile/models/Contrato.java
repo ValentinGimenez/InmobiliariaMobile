@@ -1,7 +1,5 @@
 package com.example.inmobiliariamobile.models;
 
-import android.util.Log;
-
 import java.io.Serializable;
 
 public class Contrato implements Serializable {
@@ -10,7 +8,7 @@ public class Contrato implements Serializable {
     private Inquilino inquilino;
     private String fecha_inicio;
     private String fecha_fin;
-    private double montoMensual;
+    private double monto_mensual;
 
     public int getId() { return id; }
     public Inmueble getInmueble() { return inmueble; }
@@ -22,15 +20,15 @@ public class Contrato implements Serializable {
     public String getFecha_fin() {
         return fecha_fin;
     }
-    public double getMontoMensual() { return montoMensual; }
+    public double getMonto_mensual() { return monto_mensual; }
 
-    public Contrato(int id, Inmueble inmueble, Inquilino inquilino, String fecha_inicio, String fecha_fin, double montoMensual) {
+    public Contrato(int id, Inmueble inmueble, Inquilino inquilino, String fecha_inicio, String fecha_fin, double monto_mensual) {
         this.id = id;
         this.inmueble = inmueble;
         this.inquilino = inquilino;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
-        this.montoMensual = montoMensual;
+        this.monto_mensual = monto_mensual;
     }
 
     public void setId(int id) {
@@ -53,7 +51,19 @@ public class Contrato implements Serializable {
         this.fecha_fin = fecha_fin;
     }
 
-    public void setMontoMensual(double montoMensual) {
-        this.montoMensual = montoMensual;
+    public void setMonto_mensual(double monto_mensual) {
+        this.monto_mensual = monto_mensual;
+    }
+
+    @Override
+    public String toString() {
+        return "Contrato{" +
+                "id=" + id +
+                ", inmueble=" + inmueble +
+                ", inquilino=" + inquilino +
+                ", fecha_inicio='" + fecha_inicio + '\'' +
+                ", fecha_fin='" + fecha_fin + '\'' +
+                ", montoMensual=" + monto_mensual +
+                '}';
     }
 }

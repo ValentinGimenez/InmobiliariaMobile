@@ -57,36 +57,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
         String estado = inmuebleActual.getEstado();
         String tipo = inmuebleActual.getTipo();
         String uso = inmuebleActual.getUso();
-        Log.d("InmuebleDetalle", "Estado: " + estado);
-        Log.d("InmuebleDetalle", "Tipo: " + tipo);
-        Log.d("InmuebleDetalle", "Uso: " + uso);
         holder.estado.setText("Estado: "+ estado );
-        holder.tipo.setText("Tipo: " +tipo);
-        holder.uso.setText("Uso: " +uso);
-//        switch (estado) {
-//            case "1":
-//                holder.estado.setText("Estado: Disponible" );
-//                break;
-//            case "2":
-//                holder.estado.setText("Estado: No Disponible" );
-//                break;
-//        }
-//        switch (tipo) {
-//            case "1": holder.tipo.setText("Tipo: Casa" );
-//            break;
-//            case "2": holder.tipo.setText("Tipo: Departamento" );
-//            break;
-//            case "3": holder.tipo.setText("Tipo: Oficina" );
-//            break;
-//            case "4": holder.tipo.setText("Tipo: Local" );
-//            break;
-//        }
-//        switch (uso) {
-//            case "1": holder.uso.setText("Uso: Comercial" );
-//            break;
-//            case "2": holder.uso.setText("Uso: Residencial" );
-//            break;
-//        }
 
         String imagePath = inmuebleActual.getImagen() == null ? "" : inmuebleActual.getImagen().replace("\\", "/");
         String fullUrl = imagePath.startsWith("http") ? imagePath : urlBase + imagePath;
@@ -121,8 +92,6 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
             direccion = itemView.findViewById(R.id.tvDireccion);
             valor = itemView.findViewById(R.id.tvPrecio);
             estado = itemView.findViewById(R.id.tvEstado);
-            tipo = itemView.findViewById(R.id.tvTipo);
-            uso = itemView.findViewById(R.id.tvUso);
             foto = itemView.findViewById(R.id.ivFoto);
             cardView = itemView.findViewById(R.id.cItem);
         }

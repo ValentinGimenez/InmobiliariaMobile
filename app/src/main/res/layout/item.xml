@@ -56,22 +56,6 @@
                 android:text="Estado: Disponible"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tvTipo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tipo: Casa"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tvUso"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Uso: Residencial"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

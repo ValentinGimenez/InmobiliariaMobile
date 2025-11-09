@@ -2,6 +2,7 @@ package com.example.inmobiliariamobile.ui.pagos;
 
 import android.app.Application;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -9,7 +10,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.inmobiliariamobile.models.Contrato;
-import com.example.inmobiliariamobile.models.Inmueble;
 import com.example.inmobiliariamobile.models.Pago;
 import com.example.inmobiliariamobile.request.ApiClient;
 
@@ -24,7 +24,7 @@ public class PagosViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Pago>> mPagos = new MutableLiveData<>();
     private final MutableLiveData<String> mError = new MutableLiveData<>();
     private final MutableLiveData<String> mExito = new MutableLiveData<>();
-    private final MutableLiveData<Double> mPrecioInmueble = new MutableLiveData<>();
+    private final MutableLiveData<Double> mMontoMensual = new MutableLiveData<>();
     public PagosViewModel(@NonNull Application application) {
         super(application);
     }
@@ -32,19 +32,15 @@ public class PagosViewModel extends AndroidViewModel {
     public LiveData<List<Pago>> getMPagos() { return mPagos; }
     public LiveData<String> getMError() { return mError; }
     public LiveData<String> getMExito() { return mExito; }
-    public LiveData<Double> getMPrecioInmueble() { return mPrecioInmueble; }
+    public LiveData<Double> getMMontoMensual() { return mMontoMensual; }
     public void cargarPagos(Bundle args) {
         try {
             Contrato contrato = (Contrato) args.getSerializable("contrato");
-
             if (contrato == null || contrato.getId() == 0) {
                 mError.setValue("No se pudo obtener el contrato o su ID.");
                 return;
             }
-
-            Double valorInmueble = contrato.getInmueble().getPrecio();
-
-            mPrecioInmueble.setValue(valorInmueble);
+            mMontoMensual.setValue(contrato.getMonto_mensual());
 
             String token = ApiClient.leerToken(getApplication());
 
