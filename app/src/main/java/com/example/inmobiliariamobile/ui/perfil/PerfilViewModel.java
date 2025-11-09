@@ -44,11 +44,6 @@ public class PerfilViewModel extends AndroidViewModel {
             public void onResponse(Call<Propietario> call, Response<Propietario> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Propietario p = response.body();
-                    Log.d("API_DEBUG", "Propietario recibido: " +
-                            "ID=" + p.getId() +
-                            ", Nombre=" + p.getNombre() +
-                            ", Apellido=" + p.getApellido() +
-                            ", Email=" + p.getEmail());
                     mPropietario.postValue(response.body());
                 } else {
                     mError.setValue("Error al obtener los datos del perfil.");

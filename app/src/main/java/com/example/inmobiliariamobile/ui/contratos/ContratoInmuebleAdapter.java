@@ -1,4 +1,4 @@
-package com.example.inmobiliariamobile.ui.inquilinos;
+package com.example.inmobiliariamobile.ui.contratos;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,13 +24,13 @@ import com.example.inmobiliariamobile.models.Inquilino;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class InquilinoInmuebleAdapter extends RecyclerView.Adapter<InquilinoInmuebleAdapter.InquilinoInmuebleViewHolder> {
+public class ContratoInmuebleAdapter extends RecyclerView.Adapter<ContratoInmuebleAdapter.ContratoInmuebleViewHolder> {
 
     private final LiveData<List<Contrato>> liveData;
     private final Context context;
     private final LayoutInflater li;
 
-    public InquilinoInmuebleAdapter(LiveData<List<Contrato>> liveData, LayoutInflater li, Context context) {
+    public ContratoInmuebleAdapter(LiveData<List<Contrato>> liveData, LayoutInflater li, Context context) {
         this.liveData = liveData;
         this.li = li;
         this.context = context;
@@ -38,13 +38,13 @@ public class InquilinoInmuebleAdapter extends RecyclerView.Adapter<InquilinoInmu
 
     @NonNull
     @Override
-    public InquilinoInmuebleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ContratoInmuebleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = li.inflate(R.layout.item, parent, false);
-        return new InquilinoInmuebleViewHolder(itemView);
+        return new ContratoInmuebleViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull InquilinoInmuebleViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ContratoInmuebleViewHolder holder, int position) {
         List<Contrato> listado = liveData.getValue();
         if (listado == null || listado.isEmpty()) return;
 
@@ -77,11 +77,11 @@ public class InquilinoInmuebleAdapter extends RecyclerView.Adapter<InquilinoInmu
                 .into(holder.foto);
 
         holder.cardView.setOnClickListener(v -> {
-            if (inquilinoActual == null) return;
+            if (contratoActual == null) return;
             Bundle bundle = new Bundle();
-            bundle.putSerializable("inquilino", inquilinoActual);
+            bundle.putSerializable("contrato", contratoActual);
             Navigation.findNavController((Activity) v.getContext(), R.id.nav_host_fragment_content_menu)
-                    .navigate(R.id.nav_inquilino_detalle, bundle);
+                    .navigate(R.id.nav_contrato_detalle, bundle);
         });
     }
 
@@ -91,12 +91,12 @@ public class InquilinoInmuebleAdapter extends RecyclerView.Adapter<InquilinoInmu
         return (listado == null) ? 0 : listado.size();
     }
 
-    public static class InquilinoInmuebleViewHolder extends RecyclerView.ViewHolder {
+    public static class ContratoInmuebleViewHolder extends RecyclerView.ViewHolder {
         TextView direccion, valor, estado, tipo, uso;
         ImageView foto;
         CardView cardView;
 
-        public InquilinoInmuebleViewHolder(@NonNull View itemView) {
+        public ContratoInmuebleViewHolder(@NonNull View itemView) {
             super(itemView);
             direccion = itemView.findViewById(R.id.tvDireccion);
             valor = itemView.findViewById(R.id.tvPrecio);
