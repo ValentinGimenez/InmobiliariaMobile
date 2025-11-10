@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.perfil.CambiarClaveFragment"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="@color/white"
+    tools:context=".ui.perfil.CambiarClaveFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,40 +21,67 @@
             android:text="Cambiar contraseña"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="24dp"/>
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp" />
 
-        <EditText
-            android:id="@+id/etActual"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Clave actual"
-            android:inputType="textPassword"
-            android:layout_marginBottom="16dp"
-            android:padding="12dp"/>
+            app:endIconMode="password_toggle">
 
-        <EditText
-            android:id="@+id/etNueva"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etActual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="Nueva clave"
-            android:inputType="textPassword"
-            android:layout_marginBottom="16dp"
-            android:padding="12dp"/>
+            app:endIconMode="password_toggle">
 
-        <EditText
-            android:id="@+id/etConfirmar"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNueva"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="Confirmar nueva clave"
-            android:inputType="textPassword"
-            android:layout_marginBottom="24dp"
-            android:padding="12dp"/>
+            app:endIconMode="password_toggle">
 
-        <Button
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnGuardar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar cambios" />
+            android:text="Guardar cambios"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            app:cornerRadius="12dp"
+            app:backgroundTint="@color/purple_700"
+            app:icon="@drawable/ic_lock_24"
+            app:iconTint="@color/white"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp" />
 
     </LinearLayout>
 </ScrollView>

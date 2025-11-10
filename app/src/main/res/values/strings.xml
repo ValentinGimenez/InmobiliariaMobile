@@ -14,4 +14,10 @@
     <string name="contratos">Contratos</string>
     <string name="logout">Logout</string>
     <string name="inicio">Inicio</string>
+    <string name="content_desc_nro_pago">Número de pago</string>
+    <string name="content_desc_fecha_pago">Fecha de pago</string>
+    <string name="content_desc_id_contrato">ID de contrato</string>
+    <string name="content_desc_id_pago">ID de pago</string>
+    <string name="imagen_inquilino">imagen inquilino</string>
+
 </resources>
