@@ -54,9 +54,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
         holder.valor.setText("$ " + new DecimalFormat("#,##0.00").format(inmuebleActual.getPrecio()));
 
 
-        String estado = inmuebleActual.getEstado();
-        String tipo = inmuebleActual.getTipo();
-        String uso = inmuebleActual.getUso();
+        String estado = inmuebleActual.estadoToString();
         holder.estado.setText("Estado: "+ estado );
 
         String imagePath = inmuebleActual.getImagen() == null ? "" : inmuebleActual.getImagen().replace("\\", "/");

@@ -46,7 +46,7 @@ public class InmuebleDetalleViewModel extends AndroidViewModel {
         if (inmueble != null) {
             mInmueble.setValue(inmueble);
 
-            String estado = inmueble.getEstado() != null ? inmueble.getEstado().toLowerCase() : "";
+            String estado = inmueble.estadoToString() != null ? inmueble.estadoToString().toLowerCase() : "";
             boolean habilitar = true;
             switch (estado) {
                 case "alquilado":
@@ -60,9 +60,12 @@ public class InmuebleDetalleViewModel extends AndroidViewModel {
         }
     }
     public void actualizarDisponibilidad(Boolean disponible) {
-        Inmueble inmueble = new Inmueble();
-        inmueble.setEstado(disponible ? "1" : "2");
-        inmueble.setId(this.mInmueble.getValue().getId());
+        Inmueble inmueble = this.mInmueble.getValue();
+        if (inmueble == null) {
+            mError.setValue("No se encontró el inmueble.");
+            return;
+        }
+        inmueble.setEstado(disponible ? 1 : 2);
         String token = ApiClient.leerToken(getApplication());
         Call<Inmueble> llamada = ApiClient.getApiInmobiliaria().actualizarInmueble("Bearer " + token, inmueble);
         llamada.enqueue(new Callback<Inmueble>() {

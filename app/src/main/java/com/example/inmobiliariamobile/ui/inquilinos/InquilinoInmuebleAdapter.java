@@ -59,7 +59,7 @@ public class InquilinoInmuebleAdapter extends RecyclerView.Adapter<InquilinoInmu
         holder.direccion.setText(inmuebleActual.getDireccion());
         holder.valor.setText("$ " + new DecimalFormat("#,##0.00").format(inmuebleActual.getPrecio()));
 
-        String estado = inmuebleActual.getEstado();
+        String estado = inmuebleActual.estadoToString();
 
         holder.estado.setText("Estado: " + (estado == null ? "" : estado));
 

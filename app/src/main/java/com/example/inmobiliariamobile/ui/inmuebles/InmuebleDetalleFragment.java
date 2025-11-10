@@ -56,8 +56,8 @@ public class InmuebleDetalleFragment extends Fragment {
                 binding.tvLatitudI.setText(String.valueOf(i.getEje_x()));
                 binding.tvLongitudI.setText(String.valueOf(i.getEje_y()));
                 binding.tvValorI.setText(String.format("$ %.2f", i.getPrecio()));
-                binding.tvTipoI.setText(String.valueOf(i.getTipo()));
-                binding.tvUsoI.setText(String.valueOf(i.getUso()));
+                binding.tvTipoI.setText(String.valueOf(i.tipoToString()));
+                binding.tvUsoI.setText(String.valueOf(i.usoToString()));
                 String urlBase = "http://10.0.2.2:5145/";
                 String fullUrl = urlBase + (i.getImagen() == null ? "" : i.getImagen().replace("\\", "/"));
                 Glide.with(requireContext())
@@ -66,7 +66,7 @@ public class InmuebleDetalleFragment extends Fragment {
                         .placeholder(R.drawable.ic_launcher_foreground)
                         .into(binding.imgInmueble);
 
-                binding.checkDisponible.setChecked(i.getEstado().equalsIgnoreCase("Disponible"));
+                binding.checkDisponible.setChecked(i.estadoToString().equalsIgnoreCase("Disponible"));
             }
         });
         binding.checkDisponible.setOnCheckedChangeListener((button, isChecked) -> {

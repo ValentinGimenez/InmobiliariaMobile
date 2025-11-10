@@ -78,8 +78,28 @@ public class InmuebleNuevoViewModel extends AndroidViewModel {
             return;
         }
 
-        int ambientesPars, superficiePars;
+        int ambientesPars, superficiePars, tipoInt=-1, usoInt=-1;
         double precio, lat, lon;
+        if (tipo.equals("Casa")) {
+            tipoInt = 1;
+        } else if (tipo.equals("Departamento")) {
+            tipoInt = 2;
+        } else if (tipo.equals("Oficina")) {
+            tipoInt = 3;
+        } else if (tipo.equals("Local")) {
+            tipoInt = 4;
+        }
+
+        if (uso.equals("Residencial")) {
+            usoInt = 1;
+        } else if (uso.equals("Comercial")) {
+            usoInt = 2;
+        }
+
+        if (tipoInt == -1 || usoInt == -1) {
+            mError.setValue("Selección de tipo o uso no válida.");
+            return;
+        }
         try {
             ambientesPars = Integer.parseInt(ambientes);
             superficiePars = Integer.parseInt(superficie);
@@ -93,14 +113,14 @@ public class InmuebleNuevoViewModel extends AndroidViewModel {
 
         Inmueble inmueble = new Inmueble();
         inmueble.setDireccion(direccion);
-        inmueble.setTipo(tipo);
-        inmueble.setUso(uso);
+        inmueble.setTipo(tipoInt);
+        inmueble.setUso(usoInt);
         inmueble.setAmbientes(ambientesPars);
         inmueble.setSuperficie(superficiePars);
         inmueble.setEje_x(lat);
         inmueble.setEje_y(lon);
         inmueble.setPrecio(precio);
-        inmueble.setEstado("2");
+        inmueble.setEstado(2);
 
         Log.d("InmuebleData", "Inmueble creado: " + new Gson().toJson(inmueble));
 
