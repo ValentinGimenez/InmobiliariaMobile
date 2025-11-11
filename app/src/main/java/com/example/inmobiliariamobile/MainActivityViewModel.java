@@ -3,6 +3,7 @@ package com.example.inmobiliariamobile;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.SystemClock;
 
@@ -48,7 +49,6 @@ public class MainActivityViewModel extends AndroidViewModel implements SensorEve
     }
 
     public void login(String email, String clave) {
-
         if (email == null || email.isEmpty() || clave == null || clave.isEmpty()) {
             mError.setValue("Debe completar todos los campos.");
             return;
@@ -66,7 +66,6 @@ public class MainActivityViewModel extends AndroidViewModel implements SensorEve
                     Intent intent = new Intent(getApplication(), MenuActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     getApplication().startActivity(intent);
-
                 } else {
                     mError.postValue("Usuario o contraseña incorrectos.");
                 }
@@ -111,6 +110,7 @@ public class MainActivityViewModel extends AndroidViewModel implements SensorEve
     public void detenerSensor() {
         sensorManager.unregisterListener(this);
     }
+
     public void reiniciarSensor() {
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_UI);
     }
